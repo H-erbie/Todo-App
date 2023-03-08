@@ -26,41 +26,24 @@ add.addEventListener('click', () => {
     } 
 )
 
-var Dell = (num) => {
-    var toCons = document.querySelectorAll('.todo-con');
 
-    for (let to in toCons){
-        if( to == num)
-        toCons[to].remove();
-    }
-}
 
-var Edd = (no) => {
-    var todos = document.querySelectorAll('.todo');
-    var toCons = document.querySelectorAll('.todo-con');
-    for(let to in todos){
-        if(to == no){
-            inbox.value = todos[to].innerHTML;
-            toCons[to].remove();
-        }
-    }
-} 
+
 
 addTask = (todo) => {
     var newDiv = document.createElement('input');
     var label = document.createElement('div');
     var con = document.createElement('div');
-    var del = document.createElement('div');
-    var ed = document.createElement('div');
+    var del = document.createElement('i');
+    var ed = document.createElement('i');
     var butCon = document.createElement('div');
-    del.innerHTML = 'x';
-    ed.innerHTML = 'Ed';
     butCon.appendChild(newDiv);
     butCon.appendChild(del);    
     butCon.appendChild(ed);    
     con.setAttribute('class', 'todo-con');
-    del.setAttribute('class', 'del');
-    ed.setAttribute('class', 'ed');
+    del.setAttribute('class', 'fa-sharp fa-solid fa-trash');
+    ed.setAttribute('class', 'fa-solid fa-pen');
+    newDiv.className = 'check'
     butCon.setAttribute('class', 'but-con');
     label.setAttribute('class', 'todo');
     label.innerHTML = todo;
@@ -70,17 +53,13 @@ addTask = (todo) => {
     todos.appendChild(con) ;
     inbox.value = '';
     inbox.style.outline = 'none';
-    err.innerHTML = ''
-    var dells = document.querySelectorAll('.del')
-    var eds = document.querySelectorAll('.ed')
-    for( let d in dells){
-        dells[d].onclick = () => {
-            Dell(d);
+    err.innerHTML = '';
+    
+        del.onclick = () => {
+            con.remove();
+        }
+        ed.onclick = () => {
+            inbox.value = label.innerHTML;
+            con.remove();
         }
     }
-    for(let edds in eds){
-        eds[edds].onclick = () => {
-            Edd(edds);
-        }
-    }
-}
